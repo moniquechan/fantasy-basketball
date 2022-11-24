@@ -2,9 +2,8 @@
 import sys, getopt
 from datetime import datetime, timedelta
 import re
-import requests
-import pandas as pd
 import os
+from get_data import get_fantasy_data
 
 def validate_date(date):
     # validate date format
@@ -14,21 +13,6 @@ def validate_date(date):
     else:
         return False
 
-def get_data_by_date(date):
-        # scraping the site for fantasy player data
-        r = requests.get("https://service.fantasylabs.com/contest-sources/?sport_id=2&date=" + date)
-        group_id = r.json()['contest-sources'][0]['draft_groups'][0]['id']
-        r = requests.get("https://service.fantasylabs.com/live-contests/?sport=NBA&contest_group_id=" + str(group_id))
-        contest_id = r.json()['live_contests'][0]['contest_id']
-        player_data = requests.get("https://dh5nxc6yx3kwy.cloudfront.net/contests/nba/" + date.replace('-','') +"/" + str(contest_id) + "/data/")
-
-        # add player data to a data frame
-        df = pd.DataFrame()
-        for i in player_data.json()['players']:
-            df_dictionary = pd.DataFrame([player_data.json()['players'][i]])
-            df = pd.concat([df, df_dictionary], ignore_index=True)
-
-        return df
 
 try:
     if len(sys.argv) < 2:
@@ -46,8 +30,10 @@ try:
         if not os.path.exists('player-data'):
             os.makedirs('player-data')
         if (validate_date(date)):
+            # get data for the amount of the days with option -d in command line
             for i in range(days):
-                df = get_data_by_date(date)
+                # get fantasy data
+                df = get_fantasy_data(date)
                 df.to_csv('./player-data/' + date, index=False)
                 date = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=1)).strftime('%Y-%m-%d')
             print("Data saved")
