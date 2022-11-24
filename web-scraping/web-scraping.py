@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import re
 import requests
 import pandas as pd
+import os
 
 def validate_date(date):
     # validate date format
@@ -42,6 +43,8 @@ try:
         
         # save data as csv
         date = sys.argv[1]
+        if not os.path.exists('player-data'):
+            os.makedirs('player-data')
         if (validate_date(date)):
             for i in range(days):
                 df = get_data_by_date(date)
