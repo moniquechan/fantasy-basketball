@@ -50,6 +50,33 @@ This command will extract from [rotogrinders](https://rotogrinders.com/resultsdb
 
 ### Data Cleaning
 
+Open the Juypter Notebook file for data cleaning located in `fantasy-basketball/data-cleaning/`
+```
+jupyter notebook DataCleaning.ipynb
+```
+
+Running the notebook will clean the data from web scraping and output 3 files:
+
+`clean-data.csv`
+|fullName        |salary|position|projPoints|ownership|actualPoints|Date      |Team|MIN|OREB|DREB|REB|AST|STL|BLK|TO |PF |+/-|PTS|FGA|FGM|3PTA|3PTM|FTA|FTM|
+|----------------|------|--------|----------|---------|------------|----------|----|---|----|----|---|---|---|---|---|---|---|---|---|---|----|----|---|---|
+|Chris Paul      |7700  |PG      |38.61     |10.58    |50.5        |2022-11-01|PHX |34 |1   |7   |8  |12 |3  |0  |1  |2  |18 |15 |5  |12 |1   |5   |4  |6  |
+|D'Angelo Russell|7000  |PG      |30.56     |8.16     |14.5        |2022-11-01|MIN |23 |0   |4   |4  |4  |0  |0  |4  |3  |-20|5  |2  |8  |1   |3   |0  |0  |
+|Karl-Anthony Towns|8800  |C       |42.59     |9.39     |50.0        |2022-11-01|MIN |37 |5   |5   |10 |7  |0  |1  |4  |4  |-12|24 |9  |18 |3   |7   |3  |3  |
+
+`fantasy-table.csv`
+|firstName       |lastName|fullName|salary|position|currentTeam|projPoints|ownership|actualPoints|Date|initialName|
+|----------------|--------|--------|------|--------|-----------|----------|---------|------------|----|-----------|
+|Chris           |Paul    |Chris Paul|7700  |PG      |PHX        |38.61     |10.58    |50.5        |2022-11-01|C. Paul    |
+|D'Angelo        |Russell |D'Angelo Russell|7000  |PG      |MIN        |30.56     |8.16     |14.5        |2022-11-01|D. Russell |
+|Karl-Anthony    |Towns   |Karl-Anthony Towns|8800  |C       |MIN        |42.59     |9.39     |50.0        |2022-11-01|K. Towns   |
+
+`game-table.csv`
+|Date            |Player|Team|MIN  |OREB |DREB|REB       |AST|STL|BLK|TO |PF |+/-|PTS|FGA|FGM|3PTA|3PTM|FTA|FTM|
+|----------------|------|----|-----|-----|----|----------|---|---|---|---|---|---|---|---|---|----|----|---|---|
+|2022-11-01      |P. Williams|CHI |30   |3    |4   |7         |1  |1  |2  |3  |2  |-8 |12 |5  |10 |0   |3   |2  |2  |
+|2022-11-01      |D. DeRozan|CHI |33   |0    |4   |4         |1  |3  |0  |1  |2  |-1 |20 |8  |21 |1   |2   |3  |3  |
+|2022-11-01      |N. Vucevic|CHI |32   |3    |12  |15        |2  |1  |0  |1  |2  |+5 |7  |3  |8  |0   |1   |1  |2  |
 
 ## Technologies
 
