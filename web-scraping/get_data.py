@@ -75,10 +75,10 @@ def get_game_data(date):
         os.makedirs('game-data/' + date)
     
     # get boxscore data
-    players = []
-    player_stats = []
 
     for link in links:
+        players = []
+        player_stats = []
         html_content = requests.get(f"https://www.espn.com{link}")
         time.sleep(0.5)
         dom = html.fromstring(html_content.content)
@@ -103,4 +103,4 @@ def get_game_data(date):
                     player_stats[i][index+4], player_stats[i][index+5],player_stats[i][index+6],player_stats[i][index+7], player_stats[i][index+8], player_stats[i][index+9],player_stats[i][index+10], 
                     player_stats[i][index+11], player_stats[i][index+12],player_stats[i][index+13]]
                 df.loc[len(df)] = to_append
-        df.to_csv('./game-data/' + date + '/' + date + team_names[0]+team_names[1], index=False)
+        df.to_csv('./game-data/' + date + '/' + date + team_names[0]+team_names[1]+'.csv', index=False)

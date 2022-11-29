@@ -7,7 +7,7 @@ from get_data import get_fantasy_data, get_game_data
 
 def validate_date(date):
     # validate date format
-    date_format = re.compile(r"[2][0][12][0-9]-[01][1-9]-[0123][0-9]")
+    date_format = re.compile(r"[2][0][12][0-9]-[01][0-9]-[0123][0-9]")
     if re.fullmatch(date_format, date):
         return True
     else:
@@ -37,7 +37,7 @@ else:
             try:
                 # get fantasy data
                 df = get_fantasy_data(date)
-                df.to_csv('./fantasy-data/' + date, index=False)
+                df.to_csv('./fantasy-data/' + date + '.csv', index=False)
                 get_game_data(date)
                 date = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=1)).strftime('%Y-%m-%d')
 
@@ -45,7 +45,7 @@ else:
                 print('No data found on ' + date)
                 date = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=1)).strftime('%Y-%m-%d')
             
-            print("Data saved: " + date)
+            print("Data saved: " + (datetime.strptime(date, '%Y-%m-%d') + timedelta(days=1)).strftime('%Y-%m-%d'))
     else:
         print('Not a valid date format')
 
