@@ -37,6 +37,7 @@ else:
             try:
                 # get fantasy data
                 df = get_fantasy_data(date)
+                df['Date'] = date
                 df.to_csv('./fantasy-data/' + date + '.csv', index=False)
                 get_game_data(date)
                 date = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=1)).strftime('%Y-%m-%d')
