@@ -1,3 +1,6 @@
 game-data/
 fantasy-data/
 __pycache__/
+.ipynb_checkpoints
+raw-data/
+clean-data/
