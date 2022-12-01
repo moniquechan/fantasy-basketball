@@ -78,10 +78,18 @@ Running the notebook will clean the data from web scraping and output 3 files:
 |2022-11-01      |D. DeRozan|CHI |33   |0    |4   |4         |1  |3  |0  |1  |2  |-1 |20 |8  |21 |1   |2   |3  |3  |
 |2022-11-01      |N. Vucevic|CHI |32   |3    |12  |15        |2  |1  |0  |1  |2  |+5 |7  |3  |8  |0   |1   |1  |2  |
 
+### Data Visualization
+
+The Power BI dashboard can be found [here](https://github.com/moniquechan/fantasy-basketball/blob/main/data-analysis/analysis/FantasyDashboard.pbix)
+
+![Team Dashboard Screenshot](./data-analysis/analysis/screenshots/TeamDashboard.PNG)
+
+![Player Dashboard Screenshot](./data-analysis/analysis/screenshots/PlayerDashboard.PNG)
+
 ## Technologies
 
 * [Python](https://www.python.org/) - Web Scraping, Data Cleaning
-<!-- * [Tableau](https://public.tableau.com/) - Data Visualization -->
+* [Power BI](https://powerbi.microsoft.com/en-us/) - Data Visualization
 
 
 ## Authors
