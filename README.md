@@ -33,14 +33,14 @@ python  web_scraping.py [date] [-d numberOfDays]
 This command will extract from [rotogrinders](https://rotogrinders.com/resultsdb/nba) and [ESPN](https://www.espn.com/nba/scoreboard) for their respective data. The `date` must be in the format `yyyy-mm-dd`. If the `-d` option is supplied, the script will run for `numberOfDays` times for the preceeding days of the date that was given.
 
 #### Sample Dataset
-`fantasy-basketball/fantasy-data/2022-11-01.csv`
+`fantasy-basketball/web-scraping/fantasy-data/2022-11-01.csv`
 |playerId|firstName   |lastName|fullName          |salary|position|rosterPosition|currentTeam|currentTeamId|eventId|eventTeamId|homeVisitor|favDog  |projPoints|ownership|actualPoints|statDetails|madeCut|Date      |
 |--------|------------|--------|------------------|------|--------|--------------|-----------|-------------|-------|-----------|-----------|--------|----------|---------|------------|-----------|-------|----------|
 |12012   |Chris       |Paul    |Chris Paul        |7700  |PG      |PG            |PHX        |2024         |5402170|54021702   |Home       |Favorite|38.61     |10.58    |50.5        |           |0      |2022-11-01|
 |12060   |D'Angelo    |Russell |D'Angelo Russell  |7000  |PG      |PG            |MIN        |2065         |5402170|54021701   |Visitor    |Dog     |30.56     |8.16     |14.5        |           |0      |2022-11-01|
 |12061   |Karl-Anthony|Towns   |Karl-Anthony Towns|8800  |C       |PF/C          |MIN        |2065         |5402170|54021701   |Visitor    |Dog     |42.59     |9.39     |50.0        |           |0      |2022-11-01|
 
-`fantasy-basketball/game-data/2022-11-01/2022-11-01ORLOKC.csv`
+`fantasy-basketball/web-scraping/game-data/2022-11-01/2022-11-01ORLOKC.csv`
 |Date |Player      |Team   |MIN               |FG   |3PT|FT   |OREB|DREB|REB    |AST     |STL    |BLK     |TO   |PF   |+/-  |PTS|
 |-----|------------|-------|------------------|-----|---|-----|----|----|-------|--------|-------|--------|-----|-----|-----|---|
 |2022-11-01|P. Banchero |ORL    |37                |6-13 |0-1|3-3  |0   |8   |8      |2       |1      |0       |4    |0    |+1   |15 |
@@ -52,10 +52,10 @@ This command will extract from [rotogrinders](https://rotogrinders.com/resultsdb
 
 Open the Juypter Notebook file for data cleaning located in `fantasy-basketball/data-cleaning/`
 ```
-jupyter notebook DataCleaning.ipynb
+jupyter notebook cleaning.ipynb
 ```
 
-Running the notebook will clean the data from web scraping and output 3 files:
+Running the notebook will clean the data from `fantasy-basketball/web-scraping/game-data` and `fantasy-basketball/web-scraping/fantasy-data` and will output 3 files:
 
 `clean-data.csv`
 |fullName        |salary|position|projPoints|ownership|actualPoints|Date      |Team|MIN|OREB|DREB|REB|AST|STL|BLK|TO |PF |+/-|PTS|FGA|FGM|3PTA|3PTM|FTA|FTM|
@@ -80,11 +80,20 @@ Running the notebook will clean the data from web scraping and output 3 files:
 
 ### Data Visualization
 
-The Power BI dashboard can be found [here](https://github.com/moniquechan/fantasy-basketball/blob/main/data-analysis/analysis/FantasyDashboard.pbix)
+The Power BI dashboard displays the fantasy information on specific players and teams which can be found [here](https://github.com/moniquechan/fantasy-basketball/blob/main/data-analysis/analysis/FantasyDashboard.pbix)
 
+When a team is selected as a filter the dashboard, the cards on the top right will show the average fantasy points, projected fantasy points, and salary over all game dates the team played in. 
+
+The projected and actual fantasy points accumulated by the team is displayed on the graph on the bottom left. Looking at this graph we can see if a team over achieved or under achieved after each day by comparing the bars and the line.
 ![Team Dashboard Screenshot](./data-analysis/analysis/screenshots/TeamDashboard.PNG)
 
+A player can be selected in the filter to see more detailed infomation for a single player. Similar to the team dashboard, the graph displays the selected player's projected and actual fantasy points.
+
+The graph on the bottom right displays the performance of the player for each game their team played in.
+
 ![Player Dashboard Screenshot](./data-analysis/analysis/screenshots/PlayerDashboard.PNG)
+
+The Fantasy dashboard uses `clean-data.csv` as the data for all the visuals.
 
 ## Technologies
 
